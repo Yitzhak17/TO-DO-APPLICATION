@@ -96,3 +96,8 @@ figure {
 .remove-todo:hover {
   background-color: #3a3a3f;
 }
+
+.completed {
+  color: #14c780;
+  text-decoration: line-through;
+}
