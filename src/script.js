@@ -1,22 +1,17 @@
-let todos = [
-  { id: 1, text: "Go to buy some milk", created: Date.now(), isCompleted: false },
+let globalId = 0;
+let todos = []
 
-  { id: 2, text: "Go to buy some milk", created: Date.now(), isCompleted: false },
-
-  { id: 3, text: "Go to buy some milk", created: Date.now(), isCompleted: false },
-
-  { id: 4, text: "Go to buy some milk", created: Date.now(), isCompleted: true }
-]
 
 const todoListElement = document.getElementById("to-do-list")
+const inputElement = document.querySelector("input");
 
 const renderTodoList = () => {
-  let todoComponets = '';
+  let todoComponents = '';
   todos.forEach(todo => {
-    todoComponets += createTodoCompenets(todo);
+    todoComponents += createTodoCompenents(todo);
   })
-  console.log(`todoCompenetes:${todoComponets}`)
-  todoListElement.innerHTML = todoComponets
+  console.log(`todoComponents:${todoComponents}`)
+  todoListElement.innerHTML = todoComponents
 }
 
 const createTodoCompenents = (todo) => {
@@ -39,4 +34,24 @@ const toggleTodoItem = (id) => {
   todos[idx].isCompleted = !todos[idx].isCompleted;
   renderTodoList();
 }
+
+const createToDoItem = () => {
+  const text = inputElement.value;
+  if (!text) return;
+  const todoItem = {
+    id: genId(),
+    text: text,
+    created: Date.now(),
+    isCompleted: false
+  }
+  todos.push(todoItem);
+  inputElement.value = '';
+  renderTodoList();
+}
+
+const genId = () => {
+  globalId++;
+  return globalId;
+}
+
 renderTodoList();
