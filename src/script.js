@@ -23,7 +23,7 @@ const createTodoCompenents = (todo) => {
         <h3 class="${todo.isCompleted ? "completed" : ''}" >${todo.text}</h3>
         <p class="${todo.isCompleted ? "completed" : ''}">${date} ${time}</p>
         <button onclick="toggleTodoItem(${todo.id})" class="toggle-todo">${todo.isCompleted ? `Completed` : `Checked`}</button>
-        <div class="remove-todo">X</div>
+        <div onclick="removeTodoById(${todo.id})" class="remove-todo">X</div>
       </figure>`
 
 }
@@ -49,6 +49,10 @@ const createToDoItem = () => {
   renderTodoList();
 }
 
+const removeTodoById = (id) => {
+  todos = [...todos.filter(todo => todo.id !== id)]
+  renderTodoList();
+}
 const genId = () => {
   globalId++;
   return globalId;
