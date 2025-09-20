@@ -1,4 +1,3 @@
-let globalId = 0;
 let todos = []
 
 
@@ -6,6 +5,7 @@ const todoListElement = document.getElementById("to-do-list")
 const inputElement = document.querySelector("input");
 
 const renderTodoList = () => {
+  saveTodoList();
   let todoComponents = '';
   todos.forEach(todo => {
     todoComponents += createTodoCompenents(todo);
@@ -32,6 +32,7 @@ const toggleTodoItem = (id) => {
   const idx = todos.findIndex(todo => todo.id === id)
   console.log(`the todo taht was clicked:`, idx);
   todos[idx].isCompleted = !todos[idx].isCompleted;
+  saveTodoList();
   renderTodoList();
 }
 
@@ -51,8 +52,14 @@ const createToDoItem = () => {
 
 const removeTodoById = (id) => {
   todos = [...todos.filter(todo => todo.id !== id)]
+  saveTodoList();
   renderTodoList();
 }
+
+const saveTodoList = () => {
+  localStorage.setItem('todos', JSON.stringify(todos))
+}
+
 
 const generationNanoId = (length = 8) => {
   let id = '';
