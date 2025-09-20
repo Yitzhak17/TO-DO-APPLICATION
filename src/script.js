@@ -39,7 +39,7 @@ const createToDoItem = () => {
   const text = inputElement.value;
   if (!text) return;
   const todoItem = {
-    id: genId(),
+    id: generationNanoId(),
     text: text,
     created: Date.now(),
     isCompleted: false
@@ -53,9 +53,16 @@ const removeTodoById = (id) => {
   todos = [...todos.filter(todo => todo.id !== id)]
   renderTodoList();
 }
-const genId = () => {
-  globalId++;
-  return globalId;
-}
 
+const generationNanoId = (length = 8) => {
+  let id = '';
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * chars.length);
+    id += chars[randomIndex];
+  }
+
+  return id;
+};
 renderTodoList();
