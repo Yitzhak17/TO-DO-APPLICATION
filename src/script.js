@@ -21,10 +21,13 @@ const createTodoCompenents = (todo) => {
 
   return `
       <figure>
-        <h3 class="${todo.isCompleted ? "completed" : ''}" >${todo.text}</h3>
-        <p class="${todo.isCompleted ? "completed" : ''}">${date} ${time}</p>
-        <button onclick="toggleTodoItem(${todo.id})" class="toggle-todo">${todo.isCompleted ? `Completed` : `Checked`}</button>
-        <div onclick="removeTodoById(${todo.id})" class="remove-todo">X</div>
+        <h3 ${todo.isCompleted ? 'class="completed"' : ''}>${todo.text}</h3>
+        <p ${todo.isCompleted ? 'class="completed"' : ''}>${date} ${time}</p>
+        <button onclick="toggleTodoItem('${todo.id}')" class="toggle-todo">
+         ${todo.isCompleted ? `Completed` : `Checked`}
+          </button>
+
+      <div onclick="removeTodoById('${todo.id}')" class="remove-todo">X</div>
       </figure>`
 
 }
