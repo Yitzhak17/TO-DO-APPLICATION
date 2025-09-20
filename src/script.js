@@ -1,4 +1,5 @@
-let todos = []
+const savedTodos = JSON.parse(localStorage.getItem('todos'));
+let todos = savedTodos || []
 
 
 const todoListElement = document.getElementById("to-do-list")
